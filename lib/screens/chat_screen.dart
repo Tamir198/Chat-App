@@ -2,25 +2,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
+  String collectionPath = 'Chats/12dS8Qv2FgFDhzsiaavq/messages';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) => Container(
-                padding: EdgeInsets.all(8),
-                child: Text('Dummy data'),
-              )),
+      body: StreamBuilder(
+        stream: Firestore.instance.collection(collectionPath).snapshots(),
+        builder: (context, steamSnapShot){
+          if(steamSnapShot.connectionState == ConnectionState.waiting){
+            return CircularProgressIndicator();
+          }
+           final document = steamSnapShot.data.documents;
+         return ListView.builder (
+             itemCount: document.length,
+             itemBuilder: (BuildContext context, int index) => Container(
+               padding: EdgeInsets.all(8),
+               child: Text(document[index]['Text']),
+             ));
+        }
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
-          //This is a stream that listen to changes inside cloud firestore
-          Firestore.instance.collection('Chats/12dS8Qv2FgFDhzsiaavq/messages').snapshots().listen((event) {
-            print(event.documents[0]['Text']);
-
-            event.documents.forEach((element) {
-              print(element['Text']);
-            });
+          Firestore.instance.collection(collectionPath).add({
+            'Text' : 'Plus clicked'
           });
         }
       ),

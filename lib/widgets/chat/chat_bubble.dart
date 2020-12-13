@@ -1,15 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
-  final String message;
+  final String message, userName;
   final bool isCurrentUser;
 
 
-  MessageBubble({this.message, this.isCurrentUser});
+  MessageBubble({this.message, this.isCurrentUser, this.userName});
 
   @override
   Widget build(BuildContext context) {
-    print(isCurrentUser);
     final Size screenSize = MediaQuery.of(context).size;
     //The container needed to be put inside a row because
     // otherwise its width will not be respected (it is inside listView)
@@ -32,14 +32,22 @@ class MessageBubble extends StatelessWidget {
           width: screenSize.width * 0.45,
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          child: Text(
-            message,
-            style:
-                TextStyle(
-                    color: isCurrentUser
-                        ? Colors.black
-                        : Theme.of(context).accentTextTheme.headline1.color
-                ),
+          child: Column(
+            children: [
+              Text(
+                userName,
+                style: TextStyle(fontWeight: FontWeight.bold)
+              ),
+              Text(
+                message,
+                style:
+                    TextStyle(
+                        color: isCurrentUser
+                            ? Colors.black
+                            : Theme.of(context).accentTextTheme.headline1.color
+                    ),
+              ),
+            ],
           ),
         ),
       ],

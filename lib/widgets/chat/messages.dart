@@ -13,10 +13,7 @@ class MessagesWidget extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           } else
             return StreamBuilder(
-                stream: Firestore.instance
-                    .collection('chat')
-                    .orderBy('CreatedAt', descending: true)
-                    .snapshots(),
+                stream: Firestore.instance.collection('chat').orderBy('CreatedAt', descending: true).snapshots(),
                 builder: (context, chatSnapShot) {
                   final chatDocuments = chatSnapShot.data.documents;
                   if (chatSnapShot.connectionState == ConnectionState.waiting) {
@@ -26,6 +23,8 @@ class MessagesWidget extends StatelessWidget {
                     itemBuilder: (context, index) => MessageBubble(
                         message: chatDocuments[index]['Text'],
                         isCurrentUser: chatDocuments[index]['userId'] == futureSnapShot.data.uid,
+                        //todo fix this is coming as null
+                        userName : chatDocuments[index]['userName'],
                     ),
                     itemCount: chatDocuments.length,
                     reverse: true,

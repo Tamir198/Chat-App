@@ -22,7 +22,8 @@ class _AuthScreenState extends State<AuthScreen> {
       var authRes;
       if (shouldLogIn) {
         authRes = await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
+            email: email, password: password
+        );
       } else {
         authRes = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
@@ -45,7 +46,7 @@ class _AuthScreenState extends State<AuthScreen> {
       if (error.message != null) {
         errorMessage = error.message;
       }
-      Scaffold.of(context).showSnackBar(SnackBar(
+      Scaffold.of(buildContext).showSnackBar(SnackBar(
           content: Text(errorMessage),
           backgroundColor: Theme.of(buildContext).errorColor));
       //Most errors will come from firebase, this is for development

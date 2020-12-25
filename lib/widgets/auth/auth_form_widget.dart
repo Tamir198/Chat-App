@@ -1,3 +1,4 @@
+import 'package:chat_app/pickers/my_image_picker.dart';
 import 'package:flutter/material.dart';
 
 class AuthFormWidget extends StatefulWidget {
@@ -41,6 +42,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      //ImagePickerWidget(),
                       TextFormField(
                         key: ValueKey('email'),
                         validator: (value) {

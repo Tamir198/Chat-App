@@ -37,7 +37,6 @@ class ChatScreen extends StatelessWidget {
           children: [
             Expanded(child: MessagesWidget()),
             NewMessageWidget()
-
           ],
         )
       ),

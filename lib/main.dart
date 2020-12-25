@@ -1,7 +1,8 @@
-import 'package:chat_app/screens/auth_ascreen.dart';
-import 'package:chat_app/screens/chat_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/auth_ascreen.dart';
+import 'screens/chat_screen.dart';
 
 void main() {
   runApp(MyApp());

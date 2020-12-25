@@ -1,11 +1,12 @@
-import 'package:chat_app/widgets/chat/messages.dart';
-import 'package:chat_app/widgets/chat/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/chat/messages.dart';
+import '../widgets/chat/new_message.dart';
+
 class ChatScreen extends StatelessWidget {
-  String collectionPath = 'Chats/12dS8Qv2FgFDhzsiaavq/messages';
-  String logOut = 'Logout';
+  final String collectionPath = 'Chats/12dS8Qv2FgFDhzsiaavq/messages';
+  final String logOut = 'Logout';
 
   @override
   Widget build(BuildContext context) {
